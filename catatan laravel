@@ -381,4 +381,58 @@ Route::get('produk/tambah', 'PodukController@tambah');
 
 2.6 Query Buider dan Eloquent ORM
 
-QB menyediakan cara untuk menjalankan query database dengan lebuh mudah. Bahkan dengan QB kita tidak perlu repot-repot memikirkan cara menangkal SQL injection, karena query builder sudah dilengkapi dengan fitru keamanan, Selain itu dengan QB untuk berinteraksi dengan database tanpa membuat model terlebih dahulu.
+QB menyediakan cara untuk menjalankan query database dengan lebih mudah. Bahkan dengan QB kita tidak perlu repot-repot memikirkan cara menangkal SQL injection, karena query builder sudah dilengkapi dengan fitur keamanan, Selain itu dengan QB untuk berinteraksi dengan database tanpa membuat model terlebih dahulu.
+
+contoh skrip QB (tanpa eloquent)
+
+DB::table('nama_table')->get(); //
+
+ORM (object relational mapping) yang sangat powerful. ORM merupakan teknik untuk memetakan basis data relational ke model objek. Berinteraksi dengan database seperti menampilkan, menambah, meng-update, maupun menghapus data menggunakan eloquent model lebih disarankan walaupun kita dapat melakukannya hanya dengan query builder tanpa membuat model terlebih dahulu.
+
+Perlu diperhatikan eloquent akan menganggap nama class sebagai nama tabel dengan menambahkan 's' dibelakangnya. Eloquent juga akan berasumsi kolom primary key memiliki nama 'id'. Untuk itu kita perlu mereplace property $table dan $primarykey pada model jika kita memiliki format sendiri pada tama tabel. selain itu, kita juga perlu membuat property $fillable untuk menentukan nama kolom yang dapat diisi, sehingga skirp file model Produk.php dapat diubah menjadi seperti berikut:
+
+<?php
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Produk extends Model{
+
+	protected $table = 'produk';
+	protected $primaryKey = 'id_produk';
+	protected $fillabel = ['nama_produk', 'harga_jual'];
+
+}
+
+?>
+
+Untuk mengakses model tersebut, cukup dengan menggunakan kata App\Produk. Kita akan mempelajari berbagai contoh manipulasi data dengan eloquent dan perbedaanya jika tanpa eloquent. Karena kita belum membahas tentang controller, sementara kita buat skrip di dalam route.
+
+
+2.6.1 Menampilkan Data
+
+Untuk menampilkan semua data, gunakan method all(). silahkan buka file web.php, lalu tambahkan skrip route sebagai berikut:
+
+Route::get('produk/semua', function(){
+    $produk = App\Produk::all();
+    foreach($produk as $data){
+        echo $data->id_produk. ". ".
+            "nama barang: ".$data->nama_barang." | ".
+            "harga jual: ".$data->harga_jual. "<br>";
+    }
+});
+
+
+
+Jika tanpa eloquent model, maka skripnya menjadi sebagai berikut, menggunakan QB.
+
+Route::get('produk/semua2', function(){
+    $produk = DB::table('produk')->get();
+    foreach($produk as $data){
+        echo $data->id_produk. ". ".
+            "nama barang: ".$data->nama_barang." | ".
+            "harga jual: ".$data->harga_jual. "<br>";
+    }
+
+
+});
