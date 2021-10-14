@@ -1,0 +1,19 @@
+
+Judul Buku: KONSEP DAN IMPLEMENTASI PEMROGRAMAN LARAVEL 7 EDISI BEST PRACTICE
+
+
+Berikut link untuk mendownload source code yang dibahas di buku tersebut:
+
+http://tbf.me/a/BRKvKh
+
+Apabila Anda ingin menggunakan versi Xampp yang digunakan di buku (7.3.16), silahkan download di:
+
+http://tbf.me/a/CMhRLw
+
+
+NB: Apabila link download sudah tidak berfungsi, laporkan ke email kami di redaksi@bukulokomedia.com
+
+
+
+Salam Hangat,
+Redaksi Lokomedia

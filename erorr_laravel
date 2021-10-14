@@ -1,0 +1,23 @@
+error
+
+-----------------------------------------------------------------
+#Cara Mengatasi 'Syntax error or access violation: 1071'.
+
+Syntax error or access violation: 1071 Specified key was too long; max key length is 767 bytes (SQL: alter table `users` add unique `users_email_unique`(`email`))
+
+1. Jika agan sudah menjalankan command 'php artisan migrate' dan mendapat error seperti error diatas, biasanya ada beberapa table yang sudah terlanjur ke migrate. Maka dari itu agan silahkan menghapus semua table pada database tujuan migrate.
+2. silahkan agan menuju folder laravel agan, lalu masuk ke folder app/Providers/ dan buka file AppServiceProvider.php .
+ masukan syntax:
+ public function boot()
+    {
+        Schema::defaultStringLength(191);
+    } 
+
+3. jangan lupa menambahkan  
+use Illuminate\Support\Facades\Schema; 
+
+-------------------------------------------------------------------
+
+#cara mengatasi 'Undefined function 'str_random'.intelephense(1010)'.
+
+Description: string helper functions are not part of Laravel framework since version 6.0, str_random in LaratrustSeeder.php should be replaced with Str::random.
