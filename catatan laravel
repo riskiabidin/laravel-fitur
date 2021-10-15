@@ -436,3 +436,28 @@ Route::get('produk/semua2', function(){
 
 
 });
+
+Selain dengan cara diatas, ada berbagai variasi dalam menampilkan data. menggunakan query builder. Berikut ini berbagai variasi skrip untuk menampilkan data.
+
+jika menggunakan eloquent tambahkan query builder berikut:
+
+App/Produk::. 
+
+sedangkan jika tanpa menggunakan eloquent, maka query builder dapat ditulis setelah kata:
+
+DB::table('produk')->
+
+berikut keterangan QB:
+------------------------------------------------
+
+count() = menampilkan jumlah data
+
+max('harga_jual') = menampilkan nilai maksimal dari field harga_jual 
+
+min('harga_jual') = menampilkan nilai minimal dari field harga_jual
+
+sum('harga_jual') = menampilkan nilai total dari penjumlah field harga_jual
+
+select('nama_barang as nama', 'harga_jual as harga') = memilih beberapa kolom dan membuat alias untuk kolom
+
+select(DB::raw('count(*) as total, sum(harga_jual) as harga'))->get() = menampilkan baris string expression
