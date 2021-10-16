@@ -400,7 +400,7 @@ class Produk extends Model{
 
 	protected $table = 'produk';
 	protected $primaryKey = 'id_produk';
-	protected $fillabel = ['nama_produk', 'harga_jual'];
+	protected $fillabel = ['nama_barang', 'harga_jual'];
 
 }
 
@@ -424,7 +424,7 @@ Route::get('produk/semua', function(){
 
 
 
-Jika tanpa eloquent model, maka skripnya menjadi sebagai berikut, menggunakan QB.
+Jika tanpa eloquent model, maka skripnya menjadi sebagai berikut, menggunakan QB).
 
 Route::get('produk/semua2', function(){
     $produk = DB::table('produk')->get();
@@ -461,3 +461,21 @@ sum('harga_jual') = menampilkan nilai total dari penjumlah field harga_jual
 select('nama_barang as nama', 'harga_jual as harga') = memilih beberapa kolom dan membuat alias untuk kolom
 
 select(DB::raw('count(*) as total, sum(harga_jual) as harga'))->get() = menampilkan baris string expression
+
+where('harga_jual','=', 2000)->get() = menampilkan data dengan kondisi tertentu(where1).
+
+where([
+	['harga_jual', '<=', 2000 ],
+	['id', '>=', 3]
+])->get() = menampilkan data dengan beberapa kondisi
+
+
+where('id', '<=', 3)orWhere('nama_barang', '=', 'sabun mandi')->get() = menggunakan OR untuk menampilkan beberapa kondisi
+
+whereBetween('id', [3,5])->get() = menampilkan data diantara 2 batas nilai
+
+whereNotBetween('id',  [1, 3])->get() = menampilkan data tidak diantar 2 batas nilai
+
+whereIn('id', [1, 3, 5)->get() = menampilkan data sesuai yang disebutkan
+
+whereNotIn('id', [1, 2]->get() = menampilkan data selain yang disebutkan
