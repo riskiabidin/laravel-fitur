@@ -479,3 +479,24 @@ whereNotBetween('id',  [1, 3])->get() = menampilkan data tidak diantar 2 batas n
 whereIn('id', [1, 3, 5)->get() = menampilkan data sesuai yang disebutkan
 
 whereNotIn('id', [1, 2]->get() = menampilkan data selain yang disebutkan
+
+whereNull('harga_jual')->get() = menampilkan data dengan nilai suatu kolom NULL
+
+whereNotNull('harga_jual')->get() = menampilkan data dengan nilai suatu kolom tidak NULL
+
+whereDate('created_at','2017-06-01')->get() = menampilkan data dengan nilai tanggal
+
+whereDay('created_at', '01')->get() = menampilkan data dengan nilai tanggal saja
+
+whereMonth('created_at', '06')->get() = menampilkan data dengan nilai bulan
+
+whereYear('created_at', '2017')->get() = menampilkan data dengan nilai tahun
+
+whereTime()->get() = menampilkan data dengan nilai waktu
+
+whereColumn('created_at', '<', 'update_at')->get() = menampilkan data dengan membandingkan dua kolom
+
+orderBy('id', 'asc')->get() = menampilkan data dengan urutan tertentu
+
+inRandomOrder()->get() = menampilkan data dengan urutan acak
+
