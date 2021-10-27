@@ -500,3 +500,12 @@ orderBy('id', 'asc')->get() = menampilkan data dengan urutan tertentu
 
 inRandomOrder()->get() = menampilkan data dengan urutan acak
 
+latest()->get() = menampilkan data dari yang terbaru
+
+oldest()->get() = menampilkan data dari yang terlama
+
+groupBy()->get() = menampilkan data menggunakan groupBy
+
+limit(3)->offset(2)->get() = menampilkan data dengan batasan tertentu menggunakan offset atau bisa menggunakan alternatif lain menggunakan take(3)->skip(2)->get()
+
+join('kategori', 'kategori.id', '=', 'produk.kategori_id')->get() = menampilkan data dari beberapa tabel
